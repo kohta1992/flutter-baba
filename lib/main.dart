@@ -35,15 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
   var _nameController = TextEditingController();
 
   String _zeitaku(String name) {
-    print("name=$name");
     if (name == null && name.isEmpty) {
       return "";
     }
 
     final rand = Random();
     int index = rand.nextInt(name.length - 1);
-    print("newName=${name.substring(index, index + 1)}");
-
     return name.substring(index, index + 1);
   }
 
