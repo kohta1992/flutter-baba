@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     final rand = Random();
-    int index = rand.nextInt(name.length - 1);
+    int index = rand.nextInt(name.length);
     return name.substring(index, index + 1);
   }
 
