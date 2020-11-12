@@ -71,57 +71,55 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          screenType(context) == ScreenType.sm
-              ? SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _buildYubabaTextBox(context),
-                      _buildContract(context),
-                    ],
+          SingleChildScrollView(
+            child: screenType(context) == ScreenType.sm
+                ? Center(
+                    child: Column(
+                      children: [
+                        _buildYubabaTextBox(context),
+                        _buildContract(context),
+                      ],
+                    ),
+                  )
+                : Center(
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: _buildYubabaTextBox(context),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: _buildContract(context),
+                        ),
+                      ],
+                    ),
                   ),
-                )
-              : Stack(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: _buildYubabaTextBox(context),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: _buildContract(context),
-                    ),
-                  ],
-                ),
+          ),
         ],
       ),
     );
   }
 
   Widget _buildYubabaTextBox(BuildContext context) {
-    return Wrap(
-      children: [
-        Container(
-          margin: EdgeInsets.all(30),
-          padding: EdgeInsets.all(30),
-          decoration: new BoxDecoration(
-            color: Colors.white.withAlpha(200),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            border: Border.all(color: Colors.black.withAlpha(200), width: 5),
+    return Container(
+      margin: EdgeInsets.all(30),
+      padding: EdgeInsets.all(30),
+      decoration: new BoxDecoration(
+        color: Colors.white.withAlpha(200),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        border: Border.all(color: Colors.black.withAlpha(200), width: 5),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            _yubabaText,
+            softWrap: true,
+            style: TextStyle(fontSize: 30),
           ),
-          child: Flexible(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  _yubabaText,
-                  softWrap: true,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
