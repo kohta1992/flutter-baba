@@ -45,32 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var _nameController = TextEditingController();
 
-  bool _isHighSurrogate(int charCode) {
-    return (0xD800 <= charCode && 0xDBFF >= charCode);
-  }
-
-  bool _isLowSurrogate(int charCode) {
-    return (0xDC00 <= charCode && 0xDFFF >= charCode);
-  }
-
   String _zeitaku(String name) {
     if (name == null && name.isEmpty) {
       return "";
     }
 
+    var characters = Characters(name);
+
     final rand = Random();
-    int index = rand.nextInt(name.length);
+    int index = rand.nextInt(characters.length);
 
-    String newName = name.substring(index, index + 1);
-
-    // 文字コードが上位サロゲート文字なら下位を追加、下位サロゲート文字なら上位を追加
-    if (_isHighSurrogate(newName.codeUnitAt(0))) {
-      newName = name.substring(index, index + 2);
-    } else if (_isLowSurrogate(newName.codeUnitAt(0))) {
-      newName = name.substring(index - 1, index + 1);
-    }
-
-    return newName;
+    return characters.characterAt(index).string;
   }
 
   @override
